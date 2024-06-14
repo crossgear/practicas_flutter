@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/presentation/widgets/chat/my_message_bubble.dart';
+import 'package:myapp/presentation/widgets/chat/user_message_bubble.dart';
+import 'package:myapp/presentation/widgets/shared/message_field_box.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -9,7 +12,7 @@ class ChatScreen extends StatelessWidget {
       appBar: AppBar(
         leading: const Padding(padding: EdgeInsets.all(4.0),
         child: CircleAvatar(
-          backgroundImage: NetworkImage('https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png'),
+          backgroundImage: NetworkImage('https://i.postimg.cc/C1WpT0Hd/user.png'),
         ),),
         title: const Text('Fulano'),
         centerTitle: false,
@@ -31,9 +34,12 @@ class _ChatView extends StatelessWidget {
             Expanded(child: ListView.builder(
               itemCount: 100,
               itemBuilder: (context, index) {
-              return Text('Indice: $index');
+                return ( index % 2 == 0 )
+                  ? const UserMessageBubble()
+                  : const MyMessageBubble();
             })),
-            Text('mundo'),
+            ///caja de texto
+            const MessageFieldBox(),
           ],
         ),
       ),
